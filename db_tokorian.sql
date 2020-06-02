@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: localhost
--- Waktu pembuatan: 22 Mei 2020 pada 00.27
+-- Waktu pembuatan: 02 Jun 2020 pada 15.29
 -- Versi Server: 5.5.25a
 -- Versi PHP: 5.4.4
 
@@ -76,7 +76,14 @@ CREATE TABLE IF NOT EXISTS `pelanggan` (
   `telepon_pelanggan` varchar(25) NOT NULL,
   `alamat_pelanggan` varchar(100) NOT NULL,
   PRIMARY KEY (`id_pelanggan`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data untuk tabel `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `email_pelanggan`, `password_pelanggan`, `nama_pelanggan`, `telepon_pelanggan`, `alamat_pelanggan`) VALUES
+(11, 'edi_kurni97@gmail.com', 'edi', 'edi', '0895700614820', '');
 
 -- --------------------------------------------------------
 
@@ -93,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
   `tanggal` date NOT NULL,
   `bukti` varchar(100) NOT NULL,
   PRIMARY KEY (`id_pembayaran`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data untuk tabel `pembayaran`
@@ -102,7 +109,8 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
 INSERT INTO `pembayaran` (`id_pembayaran`, `id_pembelian`, `nama`, `bank`, `jumlah`, `tanggal`, `bukti`) VALUES
 (5, 4, 'Riko', 'Mandiri', 110000, '2018-12-09', '20181209042334Japit Hijau.jpg'),
 (6, 4, 'Riko', 'Mandiri', 111, '2018-12-09', '20181209042616Japit Hijau.jpg'),
-(7, 5, 'Riko', 'Mandiri', 45000, '2018-12-09', '20181209071550Japit Hijau.jpg');
+(7, 5, 'Riko', 'Mandiri', 45000, '2018-12-09', '20181209071550Japit Hijau.jpg'),
+(8, 8, 'AA', 'S', 1, '2020-05-22', '20200522004136BROSUR.jpg');
 
 -- --------------------------------------------------------
 
@@ -122,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `pembelian` (
   `status_pembelian` varchar(100) NOT NULL DEFAULT 'pending',
   `resi_pengiriman` varchar(50) NOT NULL,
   PRIMARY KEY (`id_pembelian`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data untuk tabel `pembelian`
@@ -131,7 +139,9 @@ CREATE TABLE IF NOT EXISTS `pembelian` (
 INSERT INTO `pembelian` (`id_pembelian`, `id_pelanggan`, `id_ongkir`, `tanggal_pembelian`, `total_pembelian`, `nama_kota`, `tarif`, `alamat_pengiriman`, `status_pembelian`, `resi_pengiriman`) VALUES
 (4, 5, 1, '2018-12-09', 110000, 'Kendal', 10000, 'GONDANG', 'barang dikirim', '33333333'),
 (5, 6, 2, '2018-12-09', 45000, 'Semarang', 20000, 'aaaa', 'sudah kirim pembayaran', ''),
-(6, 8, 1, '2018-12-09', 35000, 'Kendal', 10000, 'aaa', 'pending', '');
+(6, 8, 1, '2018-12-09', 35000, 'Kendal', 10000, 'aaa', 'pending', ''),
+(7, 10, 1, '2020-05-22', 10010, 'Kendal', 10000, '', 'pending', ''),
+(8, 10, 1, '2020-05-22', 10000, 'Kendal', 10000, '', 'sudah kirim pembayaran', '');
 
 -- --------------------------------------------------------
 
@@ -150,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `pembelian_produk` (
   `subharga` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
   PRIMARY KEY (`id_pembelian_produk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data untuk tabel `pembelian_produk`
@@ -160,7 +170,9 @@ INSERT INTO `pembelian_produk` (`id_pembelian_produk`, `id_pembelian`, `id_produ
 (6, 4, 10, 'Sendal Japit Swallow Biru', 25000, 500, 1500, 75000, 3),
 (7, 4, 11, 'Sendal Japit Swallow Hijau', 25000, 500, 500, 25000, 1),
 (8, 5, 11, 'Sendal Japit Swallow Hijau', 25000, 500, 500, 25000, 1),
-(9, 6, 10, 'Sendal Japit Swallow Biru', 25000, 500, 500, 25000, 1);
+(9, 6, 10, 'Sendal Japit Swallow Biru', 25000, 500, 500, 25000, 1),
+(10, 7, 19, 'aa', 10, 10, 10, 10, 1),
+(11, 8, 20, '', 0, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -177,7 +189,23 @@ CREATE TABLE IF NOT EXISTS `produk` (
   `deskripsi_produk` text NOT NULL,
   `stok_produk` int(11) NOT NULL,
   PRIMARY KEY (`id_produk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+
+--
+-- Dumping data untuk tabel `produk`
+--
+
+INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga_produk`, `berat_produk`, `foto_produk`, `deskripsi_produk`, `stok_produk`) VALUES
+(21, 'Kaos Casual Naruto Shippuden', 80000, 300, 'kaos naruto.jpeg', 'Kaos Casual Motif Naruto Shippuden\r\nBahan Katun Combed\r\nSablon Rubber   ', 10),
+(23, 'Kaos Kombinasi Batik', 100, 300, 'kombinasi avenger.jpeg', 'Kaos Motif Kombinasi Batik Polos\r\nBahan Adem', 5),
+(24, 'Kaos Casual St Danill', 150000, 300, 'kaos gelas tumpah.jpeg', 'Kaos Casual Motif Gambar St Danill\r\nBahan Adem\r\nTidak Panas', 5),
+(25, 'Kaos Casual Panjang St. Danillo', 150000, 350, 'kaos lengan panjang hitam.jpeg', 'Kaos Casual Lengan Panjang Motif St. Danillo\r\nLengan Panjang\r\nSablon Plastisol', 3),
+(26, 'Baju New Dakota Lengan Panjang', 100, 300, 'koas lengan panjang motif kombinasi.jpeg', 'Baju New Dakota Lengan Panjang Kombinasi 3 warna', 15),
+(27, 'Kaos Printing Hand Paint Stains', 75000, 300, 'kaos printing.jpeg', 'Kaos Casual Printing Motif Hand Paint Stains\r\nBahan Adem', 10),
+(28, 'Kemeja Pendek Revenge Collar', 100, 300, 'kemeja.jpeg', 'Kemeja Lengan Pendek Revere Big Strip', 5),
+(29, 'Kaos Casual Santai Kombinasi 3 Warna', 160000, 300, 'kombinasi 2.jpeg', 'Kaos Casual Santai Kombinasi 3 Warna\r\nBahan Adem\r\nKombinasi 3 Warna', 10),
+(30, 'Kaos Korea Genji Kombinaisi 2 Warna', 150000, 300, 'korea style.jpeg', 'Kaos Korea Genji Kombinaisi 2 Warna', 10),
+(31, 'Kaos Casual Kyubi Naruto Shippuden', 80000, 300, 'naruto putih.jpeg', ' Kaos Casual Kyubi Naruto Shippuden ', 10);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
