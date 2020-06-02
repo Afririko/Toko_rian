@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: localhost
--- Waktu pembuatan: 02 Jun 2020 pada 15.29
+-- Waktu pembuatan: 02 Jun 2020 pada 15.35
 -- Versi Server: 5.5.25a
 -- Versi PHP: 5.4.4
 
@@ -102,16 +102,6 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
   PRIMARY KEY (`id_pembayaran`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
---
--- Dumping data untuk tabel `pembayaran`
---
-
-INSERT INTO `pembayaran` (`id_pembayaran`, `id_pembelian`, `nama`, `bank`, `jumlah`, `tanggal`, `bukti`) VALUES
-(5, 4, 'Riko', 'Mandiri', 110000, '2018-12-09', '20181209042334Japit Hijau.jpg'),
-(6, 4, 'Riko', 'Mandiri', 111, '2018-12-09', '20181209042616Japit Hijau.jpg'),
-(7, 5, 'Riko', 'Mandiri', 45000, '2018-12-09', '20181209071550Japit Hijau.jpg'),
-(8, 8, 'AA', 'S', 1, '2020-05-22', '20200522004136BROSUR.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -132,17 +122,6 @@ CREATE TABLE IF NOT EXISTS `pembelian` (
   PRIMARY KEY (`id_pembelian`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
---
--- Dumping data untuk tabel `pembelian`
---
-
-INSERT INTO `pembelian` (`id_pembelian`, `id_pelanggan`, `id_ongkir`, `tanggal_pembelian`, `total_pembelian`, `nama_kota`, `tarif`, `alamat_pengiriman`, `status_pembelian`, `resi_pengiriman`) VALUES
-(4, 5, 1, '2018-12-09', 110000, 'Kendal', 10000, 'GONDANG', 'barang dikirim', '33333333'),
-(5, 6, 2, '2018-12-09', 45000, 'Semarang', 20000, 'aaaa', 'sudah kirim pembayaran', ''),
-(6, 8, 1, '2018-12-09', 35000, 'Kendal', 10000, 'aaa', 'pending', ''),
-(7, 10, 1, '2020-05-22', 10010, 'Kendal', 10000, '', 'pending', ''),
-(8, 10, 1, '2020-05-22', 10000, 'Kendal', 10000, '', 'sudah kirim pembayaran', '');
-
 -- --------------------------------------------------------
 
 --
@@ -161,18 +140,6 @@ CREATE TABLE IF NOT EXISTS `pembelian_produk` (
   `jumlah` int(11) NOT NULL,
   PRIMARY KEY (`id_pembelian_produk`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
-
---
--- Dumping data untuk tabel `pembelian_produk`
---
-
-INSERT INTO `pembelian_produk` (`id_pembelian_produk`, `id_pembelian`, `id_produk`, `nama`, `harga`, `berat`, `subberat`, `subharga`, `jumlah`) VALUES
-(6, 4, 10, 'Sendal Japit Swallow Biru', 25000, 500, 1500, 75000, 3),
-(7, 4, 11, 'Sendal Japit Swallow Hijau', 25000, 500, 500, 25000, 1),
-(8, 5, 11, 'Sendal Japit Swallow Hijau', 25000, 500, 500, 25000, 1),
-(9, 6, 10, 'Sendal Japit Swallow Biru', 25000, 500, 500, 25000, 1),
-(10, 7, 19, 'aa', 10, 10, 10, 10, 1),
-(11, 8, 20, '', 0, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
